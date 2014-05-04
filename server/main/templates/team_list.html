@@ -1,0 +1,47 @@
+#extends 'base.html'
+
+#block content
+<div class="page-header">
+    <h1>{{ title }}</h1>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="span1">ID</th>
+                <th class="span2">Name</th>
+                <th class="span2">Image Url</th>
+                <th class="span2">Administrator</th>
+                <th class="span2">Coach</th>
+                <th class="span2">Link to list of topics</th>
+                <th class="span1">Create</th>
+                <th class="span1">Follow</th>
+                <th class="span1">UnFollow</th>
+                <th class="span1">Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            #for team in teams_dbs
+            <tr>
+                <td>{{ team.key.id() }}</td>
+                <td>{{ team.name }}</td>
+                {#             <td>{{team.league.get().name}}</td>#}
+                <td>{{ team.logo }}</td>
+                <td>{{ team.administrator.username }}</td>
+                <td>{{ team.coach }}</td>
+                {#             <td><a href="{{url_for('topics_list',team_url=team.key.urlsafe()) }}">{{ team.name }} Topics</a></td>#}
+                <td><a href="{{ url_for('topics_list',team_url=team.name) }}">{{ team.name }} Topics</a></td>
+                <td><a href="{{ url_for('create_topic',team_url=team.name) }}">Create</a></td>
+                <td><a href="{{ url_for('follow',team_name=team.name) }}">Follow</a></td>
+                <td><a href="{{ url_for('unfollow',team_name=team.name) }}">UnFollow</a></td>
+                <td><a href="{{ url_for('update_team',league_name=team.league.name,team_name=team.name) }}">Update</a>
+                </td>
+            </tr>
+            #endfor
+            </tbody>
+        </table>
+    </div>
+</div>
+#endblock

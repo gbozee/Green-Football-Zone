@@ -1,0 +1,24 @@
+﻿<div data-cc-sidebar data-ng-controller="sidebar as vm">
+<div class="sidebar-filler"></div>
+<div class="sidebar-dropdown"><a href="#">Menu</a></div>
+<div class="sidebar-inner">
+<div class="sidebar-widget">
+<form class="navbar-form hidden-xs" role="search">
+<div class="input-group">
+<input type="text" class="form-control" placeholder="Find Teams" data-ng-model="vm.searchText" data-ng-keyup="vm.search($event)">
+<div class="input-group-btn">
+<a class="btn btn-default" data-ng-click="vm.search($event)"><i class="glyphicon glyphicon-search"></i></a>
+</div>
+</div>
+</form>
+</div>
+<ul class="navi">
+<li class="nlightblue fade-selection-animation" data-ng-class="vm.isCurrent(r)" data-ng-repeat="r in vm.navRoutes" data-ng-hide="$first">
+<a href="#{{ r.url }}" data-ng-bind-html="r.config.settings.content"></a>
+</li>
+</ul>
+<div class="sidebar-widget">
+<div id="todaydate"></div>
+</div>
+</div>
+</div>

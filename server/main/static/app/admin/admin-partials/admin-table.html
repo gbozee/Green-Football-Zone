@@ -1,0 +1,18 @@
+<div class="widget {{color}}">
+    <div data-cc-widget-header title="{{ title }}"
+         allow-collapse="true"></div>
+    <div class="widget-content text-center text-info">
+        <table class="table table-condensed table-striped">
+            <thead>
+            <tr data-gf-table-header header="header">
+            </tr>
+            </thead>
+            <tbody data-ng-show="{{team}}" data-gf-team-list list="list">
+            <tbody data-ng-hide="{{team}}" data-gf-league-list list="list">
+            </tbody>
+        </table>
+    </div>
+    <div class="widget-foot">
+        <div class="clearfix"></div>
+    </div>
+</div>

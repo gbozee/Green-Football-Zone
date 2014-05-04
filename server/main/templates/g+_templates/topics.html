@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{topic.title}}</title>
+</head>
+<body itemscope itemtype="http://schema.org/Thing">
+  <h1 itemprop="name">Title: {{topic.title}} </h1>
+  <span>created: {{ topic.created.strftime('%Y-%m-%d') }}</span><br/><br/>
+      <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">written by {{topic.author.get().username}}</span>
+      </div>
+      <small>Team: {{ topic.team.get().name }}</small>
+  {% if topic.second_team %}
+      {% if topic.second_team.get() %}
+          <div>
+              <small>Team 2: {{ topic.second_team.get().name }}</small>
+          </div>
+      {% endif %}
+  {% endif %}
+    <p itemprop="description">{{topic.body}}</p>
+
+   <div class="col-md-4" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+    <span itemprop="reviewCount">{{topic.votes}} votes</span> so far
+
+  </div>
+<div class="col-md-12 pull-right">Join <a href="http://gcdc2013-green-football.appspot.com">Green Football</a> for more discussions</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+#extends "base3.html"
+{% block module %}app{% endblock %}
+{% block title %}<title data-ng-bind="title">Green Football</title>{% endblock %}
+{% block routes %}{% endblock %}
+#block head
+<style>.ng-hide{display:none!important}</style>
+<script type='text/javascript'>function startApp(){angular.bootstrap(document,["app"])};</script>
+<link rel="stylesheet" href="/p/min/style/external.min.css"/>
+<link rel="stylesheet" href="/p/min/style/theme.min.css"/>
+<link href="/p/content/styles.css" rel="stylesheet"/>
+<link href="/p/content/ngProgress.css" rel="stylesheet"/>
+<link rel="stylesheet" href="/p/min/style/widgets.min.css"/>
+#endblock
+#block content
+<div data-ng-include="'/p/app/layout/shell.html'"></div>
+<div id="splash-page" data-ng-show="false">
+<div class="page-splash">
+<div class="page-splash-message">
+Green Football
+</div>
+<div class="progress progress-striped active page-progress-bar">
+<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+</div>
+</div>
+</div>
+</div>
+<span data-cc-scroll-to-top></span>
+#endblock
+#block scripts
+{#<script src="/p/scripts/angular.js"></script>#}
+{#<script src="/p/scripts/angular-animate.js"></script>#}
+{#<script src="/p/scripts/angular-cache.js"></script>#}
+{#<script src="/p/scripts/angular-mocks.js"></script>#}
+{#<script src="/p/scripts/angular-resource.min.js"></script>#}
+{#<script src="/p/scripts/angular-route.js"></script>#}
+{#<script src="/p/scripts/bower_components/angular-touch/angular-touch.min.js"></script>#}
+{#<script src="/p/scripts/bower_components/ngprogress/build/ngProgress.min.js"></script>#}
+{#<script src="/p/scripts/angular-sanitize.js"></script>#}
+{#<script src="/p/scripts/restangular.js"></script>#}
+<script src="/p/min/script/angular.min.js"></script>
+<script src="/p/min/script/ui_bootstrap.min.js"></script>
+<script src="/p/min/script/ui-view.min.js"></script>
+<script src="/p/min/script/others.min.js"></script>
+<script src="/p/min/script/common.min.js"></script>
+<script src="/p/min/script/gf.min.js"></script>
+{#<script src="/p/app-ready/app.js"></script>#}
+{#<script src="/p/app-ready/admin/admin.js"></script>#}
+{#<script src="/p/app-ready/admin/create-league.js"></script>#}
+{#<script src="/p/app-ready/admin/create-team.js"></script>#}
+{#<script src="/p/app-ready/dashboard/dashboard.js"></script>#}
+{#<script src="/p/app-ready/dashboard/notification.js"></script>#}
+{#<script src="/p/app-ready/gf/all_teams.js"></script>#}
+{#<script src="/p/app-ready/gf/league.js"></script>#}
+{#<script src="/p/app-ready/gf/single-team.js"></script>#}
+{#<script src="/p/app-ready/gf/team.js"></script>#}
+{#<script src="/p/app-ready/layout/shell.js"></script>#}
+{#<script src="/p/app-ready/layout/sidebar.js"></script>#}
+{#<script src="/p/app-ready/services/datacontext.js"></script>#}
+{#<script src="/p/app-ready/services/directives.js"></script>#}
+{#<script src="/p/app-ready/services/entityManagerFactory.js"></script>#}
+{#<script src="/p/app-ready/services/facebookPluginDirectives.js"></script>#}
+{#<script src="/p/app-ready/services/gf_datacontext.js"></script>#}
+{#<script src="/p/app-ready/services/google-plus-signin.js"></script>#}
+{#<script src="/p/app-ready/services/inhouse.js"></script>#}
+{#<script src="/p/app-ready/services/resource.js"></script>#}
+{#<script src="/p/app-ready/services/routemediator.js"></script>#}
+{#<script src="/p/app-ready/user/author.js"></script>#}
+{#<script src="/p/app-ready/user/friends.js"></script>#}
+{#<script src="/p/app-ready/user/single-topic.js"></script>#}
+{#<script src="/p/app-ready/user/topic.js"></script>#}
+{#<script src="/p/app-ready/user/user-replies.js"></script>#}
+{#<script src="/p/app-ready/config.exceptionHandler.js"></script>#}
+{#<script src="/p/app-ready/config.js"></script>#}
+{#<script src="/p/app-ready/config.route.js"></script>#}
+
+
+#endblock

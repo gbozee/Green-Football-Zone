@@ -1,0 +1,40 @@
+<section class="mainbar" data-ng-controller="notifier as nf">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="form-search">
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-info" data-ng-click="nf.clear()"><i
+                                class="icon-remove"></i><span>Delete All</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="widget wred">
+                    <div data-cc-widget-header title="Notifications"></div>
+                    <div class="widget-content">
+                        <div class="padd">
+                            <ul class="recent">
+                                <li class="repeat-item" data-ng-repeat="message in nf.notifications()">
+                                    <!--<a href="#{{ message.link }}">-->
+                                    <button class="btn btn-sm btn-danger pull-right" data-ng-click="nf.deleteNotice($index)"><i class="icon-remove"></i></button>
+                                    <a data-ng-click="nf.navigate(message.link)">
+                                        <div class="recent-content">
+                                            <h4>{{ message.body | words:10:ignoreSpaces }}</h4>
+                                        </div>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,94 @@
+<section class="mainbar" data-ng-controller="team as vm">
+<div class="page-head">
+<div class="user">
+<div class="row">
+<div class="col-xs-4 col-md-2 user-pic pull-left">
+<a data-ng-click="vm.navigateToTopics(a.name)">
+<img class="img-thumbnail img-responsive" data-ng-src="{{vm.team.logo}}" alt="" /></a>
+</div>
+<div class="col-xs-8 col-md-6 team-details">
+<h2>{{ vm.team.name }}
+<span class="page-meta">
+<span>{{ vm.team.info }}</span>
+<div data-ng-hide="vm.following()" class="my-elm gf-follow-button">
+<button class="btn btn-info btn-sm" style="width:90px" rel=6 ng-click="vm.followTeam(vm.team)">Follow</button>
+</div>
+<div data-ng-show="vm.following()" class="my-elm">
+<button class="btn btn-success btn-sm" style="width:90px" rel="6" ng-click="vm.unfollowTeam(vm.team)">Unfollow
+</button>
+</div>
+</span>
+</h2>
+</div>
+<div class="col-md-2 bread-crumb hidden-xs pull-right">
+<ul class="list-unstyled bread-crumb pull-right">
+<li><strong>League:</strong> {{ vm.team.league }}</li>
+<li><strong>Coach:</strong> {{ vm.team.coach }}</li>
+<li><strong> #:</strong><span>{{ vm.team.followers_count }} Followers</span></li>
+<li><strong>Administrator:</strong><span> {{ vm.team.admin }}</span>
+</ul>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<section class="matter">
+<div class="container">
+<div class="col-md-12">
+<div class="form-search">
+<div class="btn-group pull-right">
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+</div>
+<div data-ng-show="vm.following()" class="col-md-12 my-elm">
+<div class="widget wgreen">
+<div data-cc-widget-header title="Topics" subtitle=" {{ vm.topics.length }}">
+</div>
+<div class="widget-content thumbnails">
+<div class="topics">
+<div class="topic row" data-ng-repeat="topic in vm.pagedItems[vm.currentPage]">
+<upvote count="{{ topic.votes }}" upvote="vm.voteNotify()" downvote="vm.voteNotify()"></upvote>
+<div class="col-md-11">
+<div class="title col-md-12">
+<div class="created pull-right">
+{{topic.created | date:"short"}}
+</div>
+<a data-ng-href="#/topic/{{ topic.id }}"> {{ topic.title }}</a>
+</div>
+<div class="col-md-2">
+by {{topic.author}}
+</div>
+<div class="col-md-12">
+<div class="contents">
+<p>{{topic.body}}</p>
+</div>
+<div data-ng-show="vm.signedIn()">
+<google-plus-share clientid="{{vm.clientId}}" prefilltext="Check out this post on Green Football" contenturl="http://{{topic.topic_url}}" text="Share">
+</google-plus-share>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</section>
+</section>

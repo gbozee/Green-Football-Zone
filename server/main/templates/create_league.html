@@ -1,0 +1,42 @@
+#extends 'base.html'
+#import 'macro/forms.html' as forms
+
+#block content
+  <form method="POST" action=".">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+        <fieldset>
+          {{form.csrf_token}}
+
+          {{forms.text_field(form.name)}}
+          {{forms.text_field(form.info)}}
+          {{forms.text_field(form.logo_url)}}
+
+        </fieldset>
+      </div>
+      <div class="col-md-2 col-sm-3">
+        <fieldset>
+          <div class="form-group">
+            <label class="control-label">Logo</label>
+            <div>
+{#             <img class="img-thumbnail" src="" alt="Logo of none">#}
+            </div>
+            <p class="help-block">
+              Change on
+              <a href="http://tinypic.com" target="_blank">TinyPic</a>
+            </p>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+        <div class="controls">
+          <button type="submit" class="btn btn-primary btn-block btn-loading" data-loading-text="Saving League..">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+#endblock

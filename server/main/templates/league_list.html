@@ -1,0 +1,38 @@
+#extends 'base.html'
+
+#block content
+  <div class="page-header">
+    <h1>{{title}}</h1>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="span1">ID</th>
+            <th class="span2">Name</th>
+            <th class="span2">Image Url</th>
+            <th class="span1">Info</th>
+            <th class="span1">Teams</th>
+            <th class="span1">Create Teams</th>
+            <th class="span1">Update League</th>
+          </tr>
+        </thead>
+        <tbody>
+          #for league in league_dbs
+            <tr>
+              <td>{{league.key.id()}}</td>
+              <td>{{league.name}}</td>
+              <td>{{league.logo_url}}</td>
+              <td>{{league.info}}</td>
+              <td><a href="{{url_for('teams_list',league_name=league.name)}}"> Team List</a></td>
+              <td><a href="{{ url_for('create_team',league_name=league.name) }}">Add team</a></td>
+              <td><a href="{{ url_for('update_league',key=league.name) }}">Update League</a></td>
+            </tr>
+          #endfor
+        </tbody>
+      </table>
+    </div>
+  </div>
+#endblock

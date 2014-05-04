@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang=en ng-app="{% block module %}{% endblock %}">
+<head>
+<meta charset=utf-8>
+<meta http-equiv=X-UA-Compatible content="IE=edge, chrome=1"/>
+<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+{# <meta name=viewport content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">#}
+<meta name=description content>
+<meta name=keywords content>
+<meta name=author content=ztapps>
+{% block title %}
+<title>
+{# # block title#}
+{# # if title#}
+{# {{title}} |#}
+{# # endif#}
+{# # endblock#}
+{{config.CONFIG_DB.brand_name}}
+</title>
+{% endblock %}
+# include 'bit/style3.html'
+# block head
+# endblock
+<script>if("-ms-user-select" in document.documentElement.style&&navigator.userAgent.match(/IEMobile\/10\.0/)){var msViewportStyle=document.createElement("style");var mq="@-ms-viewport{width:auto!important}";msViewportStyle.appendChild(document.createTextNode(mq));document.getElementsByTagName("head")[0].appendChild(msViewportStyle)}</script>
+</head>
+<body>
+# block content
+# endblock
+#include 'bit/script3.html'
+# block scripts
+# endblock
+<script type=text/javascript>(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="https://apis.google.com/js/client:plusone.js?publisherid=102641463532511317590";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+</body>
+</html>

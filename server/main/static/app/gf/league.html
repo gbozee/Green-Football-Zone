@@ -1,0 +1,84 @@
+<section class="mainbar" data-ng-controller="leagues as vm">
+<div class="page-head">
+<h2 class="pull-left">Leagues
+<span class="page-meta">{{ vm.subtitle }}</span>
+</h2>
+<div class="bread-crumb pull-right">
+<div class="btn-group pull-right">
+<a href="#"><i class="icon-home"></i>Dashboard</a>
+<span class="divider">/</span>
+<a data-ng-click="vm.page_url" class="bread-current">Leagues</a>
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="form-search">
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="widget wlightblue">
+<div data-cc-widget-header title="Club Leagues" subtitle="{{ vm.club_leagues.length }}"></div>
+<div class="widget-content">
+<div class="padd">
+<div class="gallery">
+<a href="#/leagues/{{a.name}}" class="prettyPhoto[pp_gal] repeat-item" data-ng-repeat="a in vm.pagedClubItems[vm.currentClubPage]">
+<img class="img-thumbnail img-responsive" data-ng-src="{{a.logo}} "alt="/p/img/unknown_person.jpg">
+</a>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentClubPage == 0}">
+<a href ng-click="vm.prevClubPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedClubItems.length)" ng-class="{active: n == vm.currentClubPage}" ng-click="vm.setClubPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li data-ng-class="{disabled: vm.currentClubPage == vm.pagedClubItems.length - 1}">
+<a href data-ng-click="vm.nextClubPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="widget wdgreen">
+<div data-cc-widget-header title="Country Competition" subtitle="{{ vm.country_leagues.length }}"></div>
+<div class="widget-content">
+<div class="padd">
+<div class="gallery">
+<a href="#/leagues/{{a.name}}" class="prettyPhoto[pp_gal] repeat-item" data-ng-repeat="a in vm.pagedCountryItems[vm.currentCountryPage]">
+<img ng-src="{{a.logo}}"alt="/p/img/unknown_person.jpg">
+</a>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentCountryPage == 0}">
+<a href ng-click="vm.prevCountryPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedCountryItems.length)" ng-class="{active: n == vm.currentCountryPage}" ng-click="cl.setCountryPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: cl.currentCountryPage == cl.pagedCountryItems.length - 1}">
+<a href ng-click="cl.nextCountryPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

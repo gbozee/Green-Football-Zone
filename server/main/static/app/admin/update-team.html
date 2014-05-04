@@ -1,0 +1,94 @@
+<section id="dashboard-view" class="mainbar" data-ng-controller="update_team as vm">
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="widget wgreen">
+<div data-cc-widget-header title="{{ vm.title }}" allow-collapse="true"></div>
+<div class="widget-content">
+<div class="padd">
+<div class="row">
+<div class="col-md-3">
+<div class="gf-teams-pic">
+<img class="img-thumbnail img-responsive" data-ng-src="{{vm.team.logo}}" alt="">
+</div>
+</div>
+<div class="col-md-9"> <div class="form quick-post">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label for="league-type" class="control-label col-lg-3">League:</label>
+<div class="col-lg-9">
+<select data-ng-options="league.name as league.name for league in vm.leagues" data-ng-model="vm.team.league" class="form-control">
+<option value="">- Select League -</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="league-name" class="control-label col-lg-3">Name:</label>
+<div class="col-lg-9">
+<input focus id="league-name" required type="text" placeholder="Team Name" ng-trim="false" data-ng-model="vm.team.name" class="form-control"/>
+</div>
+</div>
+<div class="form-group">
+<label for="league-type" class="control-label col-lg-3">Team Type:</label>
+<div class="col-lg-9">
+<select class="form-control" data-ng-model="vm.team.type" id="league-type" data-ng-options="type for type in vm.data.types">
+<option value="">- Team Type -</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="league-type" class="control-label col-lg-3">Continental Competition:</label>
+<div class="col-lg-9">
+<select class="form-control" data-ng-model="vm.team.c_league" id="league-type" data-ng-options="type for type in vm.data.c_leagues">
+<option value="">- Choose Type -</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="league-type" class="control-label col-lg-3">Admin:</label>
+<div class="col-lg-9">
+<select class="form-control" data-ng-model="vm.team.admin" id="league-type" data-ng-options="admin.username as admin.username for admin in vm.authors">
+<option value="">- Select Admin -</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Coach:</label>
+<div class="col-lg-9">
+<input focus id="league-name" required type="text" placeholder="Team Coach" data-ng-model="vm.team.coach" class="form-control"/>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Logo</label>
+<div class="col-lg-9">
+<input focus id="league-name" required type="text" placeholder="Team Logo" data-ng-model="vm.team.logo" class="form-control"/>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Info</label>
+<div class="col-lg-9">
+<textarea class="form-control" data-ng-model="vm.team.info" id="content"></textarea>
+</div>
+</div>
+<div class="form-group">
+<div class="col-lg-9 col-lg-offset-3">
+<button type="submit" class="btn btn-info" data-ng-click="vm.save(vm.team, profileForm)">Update Team</button>
+<button type="reset" class="btn btn-default">Cancel</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

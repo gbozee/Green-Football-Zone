@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="{% block html_class %}{{html_class}}{% endblock %}" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>
+      # block title
+        # if title
+          {{title}} |
+        # endif
+      # endblock
+      {{config.CONFIG_DB.brand_name}}
+    </title>
+    <link rel="stylesheet" href="/p/min/style/style.min.css"/>
+    # block head
+    # endblock
+    # include 'bit/analytics.html'
+  </head>
+
+  <body itemscope itemtype="{% block itemtype %}http://schema.org/Thing{% endblock %}">
+     <div class="container">
+      # block header
+      # endblock
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+
+        # block content
+        # endblock
+      </div>
+
+    # block scripts
+    # endblock
+  </body>
+</html>

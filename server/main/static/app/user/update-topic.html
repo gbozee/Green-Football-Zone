@@ -1,0 +1,54 @@
+<section class="mainbar" data-ng-controller="update-topic as vm">
+<section class="matter">
+<div class="container">
+<div class="col-md-3">
+<div class="widget worange">
+<div data-cc-widget-header title="Update Post" allow-collapse="false"></div>
+<div class="widget-content">
+<div class="padd">
+<div class="form quick-post">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="control-label col-lg-3" for="title">Title</label>
+<div class="col-lg-9">
+<input data-ng-model="vm.topic.title" type="text" class="form-control" id="title">
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Content</label>
+<div class="col-lg-9">
+<textarea data-ng-model="vm.topic.body" class="form-control" id="content"></textarea>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3">Your Teams ()</label>
+<div class="col-lg-9">
+<span tooltip-placement="bottom" tooltip="Your First Team">
+<select form-control data-ng-options="team.name as team.name for team in vm.followedTeams()" data-ng-model="vm.topic.team">
+</select>
+</span>
+<span tooltip-placement="bottom" tooltip="Your Second Team(Not compulsory)">
+<select form-control data-ng-options="team.name as team.name for team in vm.followedTeams()" data-ng-model="vm.topic.second_team">
+</select>
+</span>
+</div>
+</div>
+<div class="form-group">
+<div class="col-lg-9 col-lg-offset-3">
+<button data-ng-click="vm.save(vm.topic)" type="submit" class="btn btn-info">Publish</button>
+<button type="submit" data-ng-click="vm.save(vm.topic)" class="btn btn-default">Save Draft</button>
+<button type="reset" class="btn btn-default">Reset</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

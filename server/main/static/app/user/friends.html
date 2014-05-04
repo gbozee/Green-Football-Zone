@@ -1,0 +1,50 @@
+<section class="mainbar" data-ng-controller="friends as vm">
+<section class="matter">
+<div class="container">
+<div class="col-md-12">
+<div class="widget wblue">
+<div data-cc-widget-header title="{{ vm.title }}" subtitle="{{ vm.friends().length }}"></div>
+<div class="widget-content">
+<div class="padd repeat-item" data-ng-repeat="friend in vm.pagedItems()[vm.currentPage]">
+<div class="user">
+<div class="row">
+<div class="user-pic col-md-1">
+<img class="img-thumbnail img-responsive" data-ng-src="{{ friend.image_url }}" alt="">
+</div>
+<div class="col-md-5">
+<h4>{{ friend.google_display_name }} ({{ friend.username }})</h4>
+<span class="label label-info">{{ friend.topics_count }}</span> Topic posts
+<span class="label label-success">{{ friend.replies_count }}</span> Replies
+<span class="label label-default">{{ friend.teams.length }}</span> Teams
+Following
+</div>
+<div class="col-md-5 col-xs-12 repeat-animation">
+<a href="#/teams/{{ team.name }}" data-ng-repeat="team in friend.teams"><img class="img-thumbnail" data-ng-src="{{ team.logo }}" width="40" alt=""></a>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems().length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems().length - 1}">
+<a href ng-click="vm.nextPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

@@ -1,0 +1,102 @@
+﻿﻿<section class="mainbar" data-ng-controller="topics as vm">
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="form-search">
+<input class="input-xlarge search-query" data-ng-model="vm.topicsSearch" data-ng-keyup="vm.search($event)" placeholder="Filter title, author, team name, or body"/>
+<div class="btn-group pull-right">
+<a data-ng-show="vm.topics.length ==0" class="dissolve-animation btn btn-info" href="#/all-teams"><i class="icon-refresh"></i><span>Add Teams to Follow</span></a>
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+</div>
+<div class="col-md-12">
+<div class="widget wwine">
+<div data-cc-widget-header title="{{ vm.title }}" subtitle="{{ vm.filteredTopics.length }} / {{ vm.topics.length }}"></div>
+<!--<div class="widget-content messages">
+<div class="padd repeat-item" data-ng-repeat="s in vm.pagedItems[vm.currentPage]">
+<a href="#/topic/{{ s.id }}">
+<div class="user">
+<img data-ng-src="{{ s.team_url }}" class="img-thumbnail user-pic"/>
+<div class="user-details">
+Authored by
+<small>{{ s.author }}</small>
+<small class="right hidden-phone">{{ s.votes }}
+<ng-pluralize count="s.votes" when="{'0': 'vote',
+                                                               'one': 'vote',
+                                                               'other': 'votes'}">
+</ng-pluralize>
+</small>
+<small class="right hidden-phone">{{ s.replies }}
+<ng-pluralize count="s.replies" when="{'0': 'reply',
+                                                           'one': 'reply',
+                                                           'other': 'replies'}">
+</ng-pluralize>
+so far
+</small>
+<small class="right hidden-phone">{{ s.created | date:"short" }}</small>
+<p class="lead">{{ s.title | words:10:ignoreSpaces }}</p>
+<div class="col-md-10">{{ s.body | words:15:ignoreSpaces }}</div>
+<small class="text-subtle hidden-phone">{{ s.team }}</small>
+</div>
+</div>
+</a>
+</div>
+</div>-->
+<div class="widget-content">
+<div class="padd">
+<ul class="recent">
+<li class="repeat-item" data-ng-repeat="s in vm.pagedItems[vm.currentPage]">
+<a href="#/topic/{{ s.id }}">
+<div class="avatar pull-left">
+<img class="img-thumbnail img-responsive" data-ng-src="{{s.team_url}}" width="70" alt=""/>
+</div>
+
+<div class="recent-content">
+<span class="recent-meta pull-right">Posted on {{ s.created | date:"short" }}</span>
+<h4>{{ s.title | words:10:ignoreSpaces }}</h4>
+</div>
+</a>
+<div class="col-md-9">{{ s.body | words:15:ignoreSpaces }}
+</div>
+<div class="hidden-xs btn-group pull-right">
+<small class="right hidden-phone">{{ s.votes }}
+<ng-pluralize count="s.votes" when="{'0': 'vote',
+                                                               'one': 'vote',
+                                                               'other': 'votes'}">
+</ng-pluralize>
+</small>
+<small class="right hidden-phone">{{ s.replies }}
+<ng-pluralize count="s.replies" when="{'0': 'reply',
+                                                           'one': 'reply',
+                                                           'other': 'replies'}">
+</ng-pluralize>
+so far
+</small>
+<small class="right hidden-phone">{{ s.created | date:"short" }}</small>
+</div>
+<div class="clearfix"></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next »</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

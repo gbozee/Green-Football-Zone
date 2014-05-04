@@ -1,0 +1,60 @@
+#extends "base.html"
+#block content
+  <div class="row">
+    <aside class="col-md-3">
+      <section>
+        <a href="<%= user_path(current_user) %>">
+          <img class="img-thumbnail" src="{{user_db.avatar_url}}&amp;s=52" alt="Gravatar photo of {{user_db.name}}">
+        </a>
+        <h1>
+          {{user_db.username}}
+        </h1>
+        <span>
+            <a href="{{ url_for('profile') }}">View my profile</a>
+        </span>
+        <span>
+            {{ comment_counts }} comments
+        </span>
+        <span>Following {{ followers_count }} teams</span>
+      </section>
+      <section>
+        <div class="stats">
+          <a href="<%= following_user_path(@user) %>">
+            <strong id="following" class="stat">
+              <%= @user.followed_users.count %>
+            </strong>
+            following
+          </a>
+          <a href="<%= followers_user_path(@user) %>">
+            <strong id="followers" class="stat">
+              <%= @user.followers.count %>
+            </strong>
+            followers
+          </a>
+        </div>
+      </section>
+      <section>
+        <div class="gcontent">
+            <div class="head"><h1>Team list</h1></div>
+            <div class="boxy">
+                <p>Your Teams - {{followers_count}} total</p>
+
+                <div class="row friendslist clearfix">
+                    <div class="col-md-1 friend">
+                        <a href="#"><img src="/img/premiership/Chelsea.jpg" width="40" height="40" alt="Sponge B."></a><span class="friendly"><a href="#">Sponge B.</a></span>
+                    </div>
+
+                </div>
+
+                <span><a href="#">See all...</a></span>
+            </div>
+        </div>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+
+#endblock

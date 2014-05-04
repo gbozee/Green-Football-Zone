@@ -1,0 +1,46 @@
+<div class="widget wgreen">
+<div data-cc-widget-header title="Teams" allow-collapse="false"></div>
+<div class="widget-content">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Logo</th>
+<th>Admin</th>
+<th>Created</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="p in pagedItems[currentPage] | orderBy:sortingOrder:reverse ">
+<td>{{ p.name }}</td>
+<td>{{ p.type }}</td>
+<td>{{ p.logo }}</td>
+<td>{{ p.admin }}</td>
+<td>{{ p.created | date:'medium' }}</td>
+<td>
+<a href="#/team_update/{{ $index }}" class="btn btn-sm btn-warning"><i class="icon-pencil"></i> </a>
+<button class="btn btn-sm btn-danger" data-ng-really-message="Are you sure?" data-ng-really-click="deleteTeam(p)"><i class="icon-remove"></i></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<div class="pagination">
+<ul>
+<li ng-class="{disabled: currentPage == 0}">
+<a href ng-click="prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage()">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+<a href ng-click="nextPage()">Next Â»</a>
+</li>
+</ul>
+</div>
+</div>
+</div>

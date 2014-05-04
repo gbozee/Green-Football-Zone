@@ -1,0 +1,169 @@
+<section class="mainbar" data-ng-controller="author as vm">
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="form-search">
+<input class="input-xlarge search-query" data-ng-model="vm.topicsSearch" data-ng-keyup="vm.search($event)" placeholder="Filter by title or body"/>
+<div class="btn-group pull-right">
+<a data-ng-hide="vm.canCreate" class="my-elm btn btn-info" data-ng-click="vm.activateCreate()"><i class="icon-refresh"></i><span>Add Topic</span></a>
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-7">
+<div class="widget wviolet">
+<div data-cc-widget-header title="My Authored Topics" subtitle="{{ vm.filteredTopics.length }}/{{ vm.topics.length }}"></div>
+<div class="widget-content referrer">
+<div class="padd">
+<ul class="latest-news">
+<li class="repeat-item" data-ng-repeat="i in vm.pagedItems[vm.currentPage]">
+<div class="row">
+<button class="btn btn-sm btn-danger pull-right" data-ng-click="vm.deleteTopic(i)"><i class="icon-remove"></i></button>
+<h6>
+<div class="col-md-11">
+<a data-ng-click="vm.updateTopic(i)">{{ i.title }}</a> -
+<span>{{ i.created | date: "medium" }}</span>
+</div>
+</h6>
+</div>
+<div class="row">
+<div class="col-md-11">
+{{ i.body }}
+</div>
+<small class="pull-right">{{ i.team }}/{{ i.second_team }}</small>
+</div>
+<div data-ng-show="vm.signedIn()">
+<google-regular-share></google-regular-share>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div data-ng-show="vm.canCreate" class="col-md-5 dissolve-animation">
+<div class="widget wdgreen">
+<div class="widget-head">
+<div class="pull-left">Create Post</div>
+<div class="widget-icons pull-right">
+<a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+<a data-ng-click="vm.doneCreating()"><i class="icon-remove"></i></a>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="widget-content">
+<div class="padd">
+<div class="form quick-post">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="control-label col-lg-3" for="title">Title</label>
+<div class="col-lg-9">
+<input type="text" data-ng-model="vm.topic.title" class="form-control" id="title">
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Body</label>
+<div class="col-lg-9">
+<textarea data-ng-model="vm.topic.body" class="form-control" id="content" style="height:150px"></textarea>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3">Your Teams ()</label>
+<div class="col-lg-9">
+<span tooltip-placement="bottom" tooltip="Your First Team">
+<select form-control data-ng-options="team.name as team.name for team in vm.followedTeams()" data-ng-model="vm.topic.team">
+</select>
+</span>
+<span tooltip-placement="bottom" tooltip="Your Second Team(Not compulsory)">
+<select form-control data-ng-options="team.name as team.name for team in vm.followedTeams()" data-ng-model="vm.topic.second_team">
+</select>
+</span>
+</div>
+</div>
+<div class="form-group">
+<div class="col-lg-9 col-lg-offset-3">
+<button type="submit" data-ng-click="vm.addTopic($event)" class="btn btn-info">Create</button>
+<button type="reset" class="btn btn-default" data-ng-click="vm.reset()">Reset</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+</div>
+</div>
+</div>
+<div data-ng-show="vm.updatable"class="col-md-5 dissolve-animation">
+<div class="widget wblue">
+<div class="widget-head">
+<div class="pull-left">Update Post</div>
+<div class="widget-icons pull-right">
+<a data-ng-click="vm.doneUpdating()"><i class="icon-remove"></i></a>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="widget-content">
+<div class="padd">
+<div class="form quick-post">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="control-label col-lg-3" for="title">Title</label>
+<div class="col-lg-9">
+<input data-ng-model="vm.topic.title" type="text" class="form-control" id="title">
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Content</label>
+<div class="col-lg-9">
+<textarea data-ng-model="vm.topic.body" class="form-control" id="content" style="height: 150px;"></textarea>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3">Your Teams ()</label>
+<div class="col-lg-9">
+<span tooltip-placement="bottom" tooltip="Your First Team">
+<select form-control data-ng-options="team.name as team.name for team in vm.followedTeams()" data-ng-model="vm.topic.team">
+</select>
+</span>
+<span tooltip-placement="bottom" tooltip="Your Second Team(Not compulsory)">
+<select form-control data-ng-options="team.name as team.name for team in vm.followedTeams()" data-ng-model="vm.topic.second_team">
+</select>
+</span>
+</div>
+</div>
+<div class="form-group">
+<div class="col-lg-9 col-lg-offset-3">
+<button data-ng-click="vm.editTopic()" type="submit" class="btn btn-info">Publish</button>
+<button type="submit" data-ng-click="vm.editTopic()" class="btn btn-default">Save Draft</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+ï»¿

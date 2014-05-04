@@ -1,0 +1,255 @@
+# extends "base3.html"
+# block head
+<link href="/p/content/landing/magnific-popup.css" rel="stylesheet">
+<link href="/p/content/landing/style.css" rel="stylesheet">
+<link href="https://plus.google.com/102641463532511317590" rel="publisher"/>
+# endblock
+# block scripts
+<script src="/p/min/script/landing.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(e,a,f){var c,b=e.getElementsByTagName(a)[0];if(e.getElementById(f)){return}c=e.createElement(a);c.id=f;c.src="//connect.facebook.net/en_US/all.js#xfbml=1&appId=655800347777696";b.parentNode.insertBefore(c,b)}(document,"script","facebook-jssdk"));</script>
+<script>!function(e,a,f){var c,b=e.getElementsByTagName(a)[0];if(!e.getElementById(f)){c=e.createElement(a);c.id=f;c.src="//platform.twitter.com/widgets.js";b.parentNode.insertBefore(c,b)}}(document,"script","twitter-wjs");</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+# endblock
+#block content
+<header id="home">
+<div id="carousel-main" class="carousel slide">
+<ol class="carousel-indicators">
+<li data-target="#carousel-main" data-slide-to="0" class="active"></li>
+<li data-target="#carousel-main" data-slide-to="1"></li>
+<li data-target="#carousel-main" data-slide-to="2"></li>
+<li data-target="#carousel-main" data-slide-to="3"></li>
+<li data-target="#carousel-main" data-slide-to="4"></li>
+</ol>
+<div class="carousel-inner">
+<div class="item active">
+<img src="/img/landing-page/background-imgaes/bg-1.jpg" class="bg" alt="">
+<div class="container" style="padding:60px 0">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left">
+<img src="/img/landing-page/container-page/greenball3.png" alt="">
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 right">
+<div class="row text-center">
+<div class="col-lg-12">
+<h1 class="title">{{ config.CONFIG_DB.brand_name }}</h1>
+<p class="lead">The battleground for soccer fanatics</p>
+<div class="row text-center">
+<div class="col-lg-12 hidden-xs">
+<a data-toggle="modal" href="#googleModal" class="btn btn-2" style="margin:0 auto">
+<i class="icon-signin"></i>Login
+</a>
+</div>
+<div class="col-lg-12 visible-xs">
+<a href="#phone-login" class="btn btn-2" style="margin:0 auto">
+<i class="icon-signin"></i>Login
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+# for image in images
+<div class="item">
+<div class="container" style="padding:60px 0">
+<img src="{{ image.bg }}" class="bg" alt="">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left">
+<img src="{{ image.cs }}" alt="">
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 right">
+<div class="row text-center">
+<div class="col-lg-12">
+<h1 class="title">{{ config.CONFIG_DB.brand_name }}</h1>
+<p class="lead">{{image.title}}.</p>
+<div class="row text-center">
+<div class="col-lg-12 hidden-xs">
+<a data-toggle="modal" href="#googleModal" class="btn btn-2" style="margin:0 auto">
+<i class="icon-signin"></i>Login
+</a>
+</div>
+<div class="col-lg-12 visible-xs">
+<a href="#phone-login" class="btn btn-2" style="margin:0 auto">
+<i class="icon-signin"></i>Login
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+# endfor
+</div>
+</div>
+</header>
+<section id="features">
+<div class="container">
+<div class="row">
+<div class="col-lg-12" style="margin-bottom:30px">
+<h3 style="margin-top:0;color:gray">Welcome to Green Football Zone.. </h3>
+<h2>Below are some of GFZ features</h2>
+</div>
+# for feature in features
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 f-item">
+<i class="icon-{{ feature.icon }}"></i>
+<h3>{{ feature.name }}</h3>
+<p>{{ feature.content }}</p>
+</div>
+#endfor
+</div>
+</div>
+</section>
+<section id="screenshots" class="hidden-xs">
+<div class="container">
+<div class="popup-gallery-screens row">
+<div class="col-lg-12" style="margin-bottom:30px">
+<h3 style="margin-top:0;color:#1C7E3B">SCREENSHOTS</h3>
+{#<h2>Check Out Our App In Action</h2>#}
+</div>
+# for screenshot in screenshots
+<div class="hidden-xs col-xs-12 col-sm-3 col-md-3 col-lg-3">
+<a href="{{ screenshot.link }}" title="{{ screenshot.title }}">
+<div class="pic">
+<img src="{{ screenshot.img_src }}" alt=""/>
+</div>
+</a>
+</div>
+#endfor
+</div>
+</div>
+</section>
+<section id="login">
+<div style="width:96%;margin:0 auto">
+<div class="row" style="padding-bottom:0">
+<div class="col-lg-6 col-lg-push-1" style="position:relative;z-index:1">
+    <div class="col-md-8">
+        <a class="twitter-timeline" data-dnt="true" width="300" height="344" href="https://twitter.com/Greenfootball1" data-widget-id="419753926070521857">Tweets about "@greenfootball1"</a>
+    </div>
+</div>
+<div class="col-lg-6 col-lg-pull-1" style="position:relative;z-index:0">
+<div class="col-md-6">
+<div style="margin-right:10px" class="g-page" data-width="246" data-href="//plus.google.com/102641463532511317590" data-theme="dark" data-rel="publisher"></div>
+</div>
+<div class="col-md-6">
+<div class="fb-like-box" data-href="http://www.facebook.com/greenfooty" data-width="246" data-height="321" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="phone-login" class="visible-xs">
+<div style="width:96%;margin:0 auto">
+<div class="row" style="padding-bottom:0">
+<div class="col-lg-6 col-lg-push-1" style="position:relative;z-index:1">
+<h3>Select Account Type </h3>
+<a href="{{ google_signin_url }}" class="btn btn-google" style="margin-left:0;margin-right:3">
+<i class="icon-google-plus-sign"></i>Google
+</a>
+<a href="{{ facebook_signin_url }}" class="btn btn-facebook" style="margin-left:0;margin-right:0">
+<i class="icon-facebook-sign"></i>Facebook
+</a>
+</div>
+</div>
+</div>
+</section>
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h3 class="modal-title" style="color:#555">Contact Form</h3>
+</div>
+<div class="modal-body">
+<form class="form-horizontal" role="form" name="contactForm" id='contact_form' method="post" action="{{ url_for('feedback') }}">
+<div class="form-group">
+<label for="name" class="control-label">Name*</label>
+<input type="text" class="form-control" name="name" id="name" placeholder="What is your name?">
+<div id='name_error' class='error'>Please enter your name.</div>
+</div>
+<div class="form-group">
+<label for="email" class="control-label">Email*</label>
+<input type="email" class="form-control" id="email" name="email" placeholder="What is your email address?">
+<div id='email_error' class='error'>Please enter your valid email address.</div>
+</div>
+<div class="form-group">
+<label for="subject" class="control-label">Subject*</label>
+<input type="text" class="form-control" id="subject" name="subject" placeholder="Please enter the subject.">
+<div id='subject_error' class='error'>Please enter the subject.</div>
+</div>
+<div class="form-group">
+<label for="message" class="control-label">Message*</label>
+<textarea class="form-control" rows="5" id="message" name="message" placeholder="What do you want to tell us?"></textarea>
+<div id='message_error' class='error'>Please enter your message.</div>
+</div>
+<div class="form-group">
+<div class="col-lg-offset-3 col-lg-6 text-center">
+<div id='mail_success' class='success'>Your message has been sent successfully.</div>
+<div id='mail_fail' class='error'>Sorry, error occured this time sending your message.</div>
+<span id='submit'>
+<input type="submit" class="btn btn-2" id="send_message" value="Send Message">
+</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="googleModal" tabindex="-1" role="dialog" aria-labelledby="googleModal" aria-hidden="true">#}
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h3 class="modal-title" style="color:#555">Select Account Type</h3>
+</div>
+<div class="modal-body">
+<div>
+<<a href="{{ google_signin_url }}" class="btn btn-google" style="margin-left:0;margin-right:3">
+<i class="icon-google-plus-sign"></i>Google
+</a>
+<a href="{{ facebook_signin_url }}" class="btn btn-facebook" style="margin-left:0;margin-right:0">
+<i class="icon-facebook-sign"></i>Facebook
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<div class="container">
+<div class="row">
+<div class="col-lg-5 col-lg-push-7">
+<ul>
+<li>
+<a href="http://www.facebook.com/greenfooty" target="_blank">
+<i class="icon-facebook"></i>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/greenfootball1" target="_blank">
+<i class="icon-twitter"></i>
+</a>
+</li>
+<li>
+<a href="https://www.google.com/+Gcdc2013-green-footballAppspot" target="_blank">
+<i class="icon-google-plus"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-7 col-lg-pull-5">
+<h5>&copy; Copywright 2013 -
+<a href="#">Developed by Andra Labs </a>|
+<a href="http://www.google.com/events/gcdc2013/" target="_blank">Google Cloud Developers Challenge
+2013 </a>
+</h5>
+<a target="_blank" href="https://developers.google.com/appengine/">
+<img src="http://developers.google.com/appengine/images/appengine-noborder-120x30.gif"
+ alt="Powered by Google App Engine" width="120" height="30"/>
+</a>
+</div>
+</div>
+</div>
+</footer>
+# endblock

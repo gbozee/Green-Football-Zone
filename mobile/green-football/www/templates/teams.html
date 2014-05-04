@@ -1,0 +1,27 @@
+<ion-view title="Teams">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content has-header="true">
+        <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" ng-model="findTeam" placeholder="Find Teams">
+          </label>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="team in teams | filter:findTeam" item="team"
+                      href="#/app/teams/{{team.id}}" class="item item-thumbnail-left item-icon-right">
+                <img src="{{team.logo}}">
+                <i class="icon" style="margin-right: 50px" ng-class="{'ion-checkmark-round': isFollowing(team), 'ion-close-round': !isFollowing(team)}"></i>
+                <h2>{{team.name}}</h2>
+                    <p>{{ team.nationality }}</p>
+                    <p>{{ team.type }}</p>
+
+
+                </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

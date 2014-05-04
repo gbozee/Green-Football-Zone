@@ -1,0 +1,8 @@
+/* Empty. Add your own CSS if you like */
+
+.list .item.item-accordion {
+    line-height: 50px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
+}

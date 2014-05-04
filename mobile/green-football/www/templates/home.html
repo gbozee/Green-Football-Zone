@@ -1,0 +1,57 @@
+<ion-view title="Home" hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content has-header="true" padding="true">
+
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <div ng-if="topics.length === 0" class="padding">
+            <h1>Are you following any team?</h1>
+            <p>Looks like you could use some company here.</p>
+            <button class="button button-block button-positive" ng-click="findTeams()">
+                Find Teams to Follow
+            </button>
+        </div>
+        <div ng-if="topics.length > 0">
+            <ion-list >
+                <ion-item ng-repeat="topic in topics | filter:created" item="topic"
+                          href="#/app/topics/{{topic.id}}" class="item item-avatar">
+                    <img src="{{topic.team_url}}">
+                    <h2>{{topic.title}}</h2>
+                <span class="item-note">
+                  {{topic.created | date}}
+                </span>
+                    <h4>by {{ topic.author }}</h4>
+                    <p>{{ topic.replies }} comments so far</p>
+                </ion-item>
+            </ion-list>
+
+            <!--<div ng-repeat="topic in topics" class="list" ng-if="topics.length > 0">-->
+            <!--<a class="item item-avatar item-icon-left" href="#/app/{{ team.id }}/topics/{{topic.id}}">-->
+            <!--<img src="{{topic.team_url}}"/>-->
+            <!--<h2>{{topic.title}}</h2>-->
+            <!--<p>{{topic.created | date:'MMM d, y h:mma'}}</p>-->
+            <!--&lt;!&ndash;<div class="item item-body">&ndash;&gt;-->
+            <!--&lt;!&ndash;<p ng-if="topic.story">{{topic.story}}</p>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<p>{{topic.body}}</p>&ndash;&gt;-->
+
+            <!--<img ng-if="topic.picture" ng-src="{{ topic.picture }}"/>-->
+
+            <!--</div>-->
+            <!--</a>-->
+
+            <!--</div>-->
+            <ion-infinite-scroll on-infinite="loadMore()"></ion-infinite-scroll>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

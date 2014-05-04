@@ -1,0 +1,28 @@
+<div class="modal">
+
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-secondary">
+        <h1 class="title">New Topic</h1>
+        <button class="button button-clear button-positive" ng-click="closeNewTopic()">Cancel</button>
+    </ion-header-bar>
+
+    <!-- Modal content area -->
+    <ion-content>
+
+        <form ng-submit="createTopic(topic)">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="text" placeholder="Topic title?" ng-model="topic.title">
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Body" ng-model="topic.body"></textarea>
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive">Create Topic</button>
+            </div>
+        </form>
+
+    </ion-content>
+
+</div>

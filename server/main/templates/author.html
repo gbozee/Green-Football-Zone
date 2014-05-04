@@ -1,0 +1,81 @@
+#extends "base.html"
+
+{% block routes %}{% endblock %}
+{% block module %}gf_author{% endblock %}
+#block head
+<link href="https://plus.google.com/102641463532511317590" rel="publisher" />
+<link href="/p/social-icons/zocial.css" rel="stylesheet" />
+#endblock
+#block afterbody
+    <!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+    po.src = "https://apis.google.com/js/plusone.js?publisherid=102641463532511317590";
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+#endblock
+
+#block content
+<!-- Place this tag where you want the widget to render. -->
+<div class="g-follow" data-annotation="bubble" data-height="24" data-href="//plus.google.com/102641463532511317590" data-rel="publisher"></div>
+<div class="pull-right">
+    #if current_user.id >0
+     #if author.google_plus_id == '' or not author.google_plus_id
+    <a href="{{ url_for('signin_google_plus') }}" class="zocial googleplus">
+        Sign in with Google Plus
+    </a>
+    #else
+    <a href="{{ url_for('forget_google_plus_user') }}" class="zocial googleplus">
+        Sign out of Google Plus
+    </a>
+    #endif
+    #endif
+</div>
+#if current_user.id > 0
+<div class="container bs-docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="bs-sidebar hidden-print" role="complementary">
+        <ul class="nav bs-sidenav">
+        <div>
+            <a href="#" class="img-thumbnail">
+                <img  src="{{author.avatar_url}}&amp;s=100" alt="Gravatar photo of {{author.name}}">
+            </a>
+            <h1>{{author.username}}</h1>
+            <a href="{{ url_for('profile') }}">View my profile</a>
+            </div>
+            <div>{{ comment_counts }} comments</div>
+            <div>Following {{ followers_count }} teams</div>
+            <div class="gcontent">
+                <div class="head"><h4>Team list</h4></div>
+                <div class="boxy">
+                    <p>Your Teams - {{followers_count}} total</p>
+                    <div class="row friendslist clearfix">
+                        #for team in author.teams
+                        <div class="col-md-1 friend">
+                            <a class="img-thumbnail" href="#"><img src="{{team.get().logo}}" width="40" height="40" alt="Sponge B."></a><span class="friendly"><a href="#">Sponge B.</a></span>
+                        </div>
+                        #endfor
+                    </div>
+
+                    <span><a href="#">See all...</a></span>
+                </div>
+            </div>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-9" role="main">
+      {% raw %}
+        <div data-ng-view></div>
+      {% endraw %}
+    </div>
+
+  </div>
+</div>
+#endif
+#endblock
+
+

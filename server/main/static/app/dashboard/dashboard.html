@@ -1,0 +1,236 @@
+﻿<section id="dashboard-view" class="mainbar" data-ng-controller="dashboard as vm">
+<div class="page-head">
+<div class="avatar pull-left">
+<a href="" data-ng-hide="vm.signedIn()"><img class="img-thumbnail img-responsive" data-ng-src="{{ vm.user().image_url }}" width="60">
+</a>
+<a data-ng-show="vm.signedIn()" href="{{ vm.user().gplus_profile }}" target="_blank">
+<img class="img-thumbnail img-responsive" data-ng-src="{{ vm.user().image_url }}" width="60">
+</a>
+</div>
+<h2 class="pull-left">Welcome
+<span> {{ vm.user().username }}</span>
+<span class="page-meta dissolve-animation" data-ng-show="vm.signedIn()">
+<google-plus-share clientid="{{vm.clientId}}" calltoactionlabel="JOIN" prefilltext="{{vm.prefilltext}}" contenturl="http://gcdc2013-green-football.appspot.com" text="Invite Friends">
+</google-plus-share>
+</span>
+</h2>
+<div class="bread-crumb pull-right">
+<a href="{{ page_link }}"><i class="icon-home"></i>{{ page_link_name }}</a>
+<span class="divider">/</span>
+<a href="#" class="bread-current">{{ title }}</a>
+</div>
+<div class="clearfix"></div>
+</div>
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+<ul class="today-datas">
+<li class="borange">
+<a href="#/my-comments">
+<div class="pull-left"><i class="icon-envelope"></i></div>
+<div class="datas-text pull-right">
+<span tooltip-placement="bottom" tooltip="Total number of comments for all topics followed">
+<span class="bold">{{ vm.comments().length }}</span> Comments
+</span>
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+<li data-ng-show="vm.signedIn() && vm.friendsCount().length > 0" class="bred dissolve-animation">
+<a href="#/my-friends">
+<div class="pull-left"><i class="icon-google-plus"></i></div>
+<div class="datas-text pull-right">
+<span data-ng-hide="" class="bold">{{ vm.friendsCount().length }}</span>Google+ friends
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+<li data-ng-show="vm.user().team_admin" class="bblue my-elm">
+<a href="#/add_topic">
+<div class="pull-left"><i class="icon-group"></i></div>
+<div class="datas-text pull-right">
+<span class="bold"><small>Admin Teams</small></span>
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+<li data-ng-show="vm.user().author" class="borange my-elm">
+<a href="#/author/create-topic/{{ true }}">
+<div class="pull-left"><i class="icon-envelope"></i></div>
+<div class="datas-text pull-right">
+<span class="bold"><small>Create Topic</small></span>
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+<li class="blightblue">
+<a href="#/user-topics">
+<div class="pull-left"><i class="icon-envelope"></i></div>
+<div class="datas-text pull-right">
+<span class="bold"><small>All topics By teams followed</small> </span>
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+<li data-ng-hide="{{ true }}" class="bgreen my-elm">
+<a href="#/profile">
+<div class="pull-left"><i class="icon-envelope"></i></div>
+<div class="datas-text pull-right">
+<span class="bold"><small>Set Profile Picture</small> </span>
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+</ul>
+</div>
+<div class="visible-xs col-md-4">
+<ul class="today-datas">
+<li class="bviolet">
+<a href="#/leagues">
+<div class="pull-left"><i class="ui-icon-lightbulb"></i></div>
+<div class="datas-text pull-right">
+<span class="bold"><small>Find Leagues</small></span>
+</div>
+<div class="clearfix"></div>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 visible-xs" data-ng-controller="followedTeams as ft">
+<div class="widget wgreen">
+<div data-cc-widget-header title="My Teams" allow-collapse="true" right-text="({{ vm.user().clubs.length }}) Clubs, ({{ vm.user().countries.length }}) Countries"></div>
+<div class="widget-content user">
+<div class="padd repeat-item" data-ng-repeat="a in ft.followedTeams()[ft.currentPage]">
+<div class="user team">
+<div class="user-pic">
+<img class="img-thumbnail img-responsive" data-ng-src="{{ a.logo }}" width="50" alt=""/>
+</div>
+<div class="user-details team">
+<a href="#/teams/{{ a.name }}">
+<small>{{ a.name }}
+</small>
+</a>
+<button class="btn btn-success btn-sm pull-right my-elm" style="width:90px" ng-hide="ft.following(a.name)" rel="6" ng-click="ft.unfollowTeam(a)">Unfollow
+</button>
+<span class="my-elm" data-ng-hide="{{ a.type == 'club' }}">{{ a.c_league }}</span>
+<span data-ng-show="{{ a.type == 'country' }}" class="label label-success my-elm">{{ a.type | capitalize }}</span>
+<span data-ng-show="{{ a.type == 'club' }}" class="label label-info my-elm">{{ a.type | capitalize }}</span>
+<div>
+<span class="hidden-xs">{{a.league}}</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: ft.currentPage == 0}">
+<a href ng-click="ft.prevPage()">« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(ft.followedTeams().length)" ng-class="{active: n == ft.currentPage}" ng-click="ft.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: ft.currentPage == ft.followedTeams().length - 1}">
+<a href ng-click="ft.nextPage()">Next »</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8" data-ng-controller="userTopics as ut">
+<div class="widget wred">
+<div data-cc-widget-header title="My Followed topics" allow-collapse="true"></div>
+<div class="widget-content">
+<div class="padd">
+<ul class="recent repeat-item">
+<li data-ng-repeat="topic in ut.pagedItems[ut.currentPage]">
+<div class="avatar pull-left">
+<img width="50" class="img-thumbnail img-responsive" data-ng-src="{{ topic.team_url }}" alt=""/>
+</div>
+<div class="recent row">
+<div class=".col-xs-12 col-md-8"><a href="#/topic/{{ topic.id }}">
+<small><b>{{ topic.title }}</b></small>
+</a> by {{ topic.author }}
+<p>{{ topic.body | words:50:ignoreSpaces }} </p>
+</div>
+<div class="hidden-xs col-xs-6 col-md-2 pull-right">
+<div class="recent-meta pull-right">Posted on
+{{ topic.created | date:"short"}}</div>
+<div>Votes: {{ topic.votes }}</div>
+<div>Replies: {{ topic.replies }}</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget-foot">
+<ul class="pagination pull-right">
+<li ng-class="{disabled: ut.currentPage == 0}">
+<a href ng-click="ut.prevPage()">« Prev</a>
+</li>
+<li ng-repeat="n in ut.range(ut.pagedItems.length)" ng-class="{active: n == ut.currentPage}" ng-click="ut.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: ut.currentPage == ut.pagedItems.length - 1}">
+<a href ng-click="ut.nextPage()">Next »</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="widget wviolet">
+<div class="widget-head">
+<div class="page-title pull-left">Recent News From GF</div>
+<div class="widget-icons pull-right">
+<a href="#" class="wminimize"><i class="icon-chevron-up"></i></a>
+</div>
+<a data-ng-click="vm.refreshNews()" class="glyphicon glyphicon-refresh pull-right"></a>
+<div class="clearfix"></div>
+</div>
+<div class="widget-content referrer">
+<div class="padd">
+<ul class="latest-news repeat-item">
+{{ feeds }}
+<li data-ng-repeat="feed in vm.pagedItems[vm.currentPage]">
+<h6><a href="{{ feed.link }}" target="_blank">{{ feed.title }}</a> -
+<span>J{{ feed.publishedDate | date: 'short'}}</span> By {{ feed.author }} <b></b></h6>
+<p>
+<small>{{ feed.contentSnippet }}</small>
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next »</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

@@ -1,0 +1,170 @@
+<section id="dashboard-view" class="mainbar" data-ng-controller="admin as vm">
+<div class="page-head">
+<h2 class="pull-left">Admin Lounge
+<span class="page-meta">Manage all about GF Zone</span>
+</h2>
+<div class="bread-crumb pull-right">
+<div class="btn-group pull-right">
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+<div class="btn-group pull-right">
+<a class="btn btn-info" href="#/add_team"><i class="icon-plus-sign"></i><span>Add Team</span></a>
+</div>
+<div class="btn-group pull-right">
+<a class="btn btn-info" href="#/add_league"><i class="icon-plus-sign"></i><span>Add League</span></a>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="form-search">
+<input type="text" data-ng-model="query"/>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="widget wgreen">
+<div data-cc-widget-header title="Teams" allow-collapse="false"></div>
+<div class="widget-content">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Logo</th>
+<th>Admin</th>
+<th>Created</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="p in vm.pagedTeamItems()[vm.currentTeamPage]">
+<td>{{ p.name }}</td>
+<td>{{ p.type }}</td>
+<td><img class="img-thumbnail img-responsive" data-ng-src="{{ p.logo }}" width="50" alt=""/></td>
+<td>{{ p.admin }}</td>
+<td>{{ p.created | date:'medium' }}</td>
+<td>
+<a href="#/team_update/{{ p.name }}" class="btn btn-sm btn-warning"><i class="icon-pencil"></i> </a>
+<button class="btn btn-sm btn-danger" data-ng-click="vm.deleteTeam(p)"><i class="icon-remove"></i></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination">
+<li ng-class="{disabled: vm.currentTeamPage == 0}">
+<a href ng-click="vm.prevTeamPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedTeamItems().length)" ng-class="{active: n == vm.currentTeamPage}" ng-click="vm.setTeamPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentTeamPage == vm.pagedTeamItems().length - 1}">
+<a href ng-click="vm.nextTeamPage(vm.pagedTeamItems())">Next Â»</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="widget wviolet">
+<div data-cc-widget-header title="Leagues" allow-collapse="false"></div>
+<div class="widget-content">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Logo</th>
+<th>Created</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="p in vm.pagedItems()[vm.currentLeaguePage]">
+<td><a href="#/league_update/{{ p.name }}">{{ p.name }}</a></td>
+<td>{{ p.type }}</td>
+<td><img class="img-thumbnail img-responsive" data-ng-src="{{ p.logo }}" width="50" alt=""/></td>
+<td>{{ p.created | date:'medium' }}</td>
+<td>
+<a href="#/league_update/{{ p.name }}" class="btn btn-sm btn-warning"><i class="icon-pencil"></i> </a>
+<button class="btn btn-sm btn-danger" data-ng-click="vm.deleteLeague(p)"><i class="icon-remove"></i></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<div>
+<ul class="pagination">
+<li ng-class="{disabled: vm.currentLeaguePage == 0}">
+<a href ng-click="vm.prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems().length)" ng-class="{active: n == vm.currentLeaguePage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentLeaguePage == vm.pagedItems().length - 1}">
+<a href ng-click="vm.nextPage(vm.pagedItems())">Next Â»</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="widget wgreen">
+<div data-cc-widget-header title="All Users" allow-collapse="false"></div>
+<div class="widget-content">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>is Admin</th>
+<th>is Author</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="p in vm.pagedUserItems()[vm.currentUserPage] ">
+<td>{{$index}}</td>
+<td>{{ p.username }}</td>
+<td><span data-ng-hide="p.team_admin" class="label label-important">Not Active</span>
+<span data-ng-show="p.team_admin" class="label label-success">Active</span>
+</td>
+<td><span data-ng-hide="p.author" class="label label-important">Not Active</span>
+<span data-ng-show="p.author" class="label label-success">Active</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success" data-ng-click="vm.assignAdmin(p)"><i class="icon-ok"></i></button>
+<button class="btn btn-sm btn-danger" data-ng-click="vm.assignAuthor(p)"><i class="icon-remove"></i> </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination">
+<li ng-class="{disabled: vm.currentUserPage == 0}">
+<a href ng-click="vm.prevUserPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedUserItems().length)" ng-class="{active: n == vm.currentUserPage}" ng-click="vm.setUserPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentUserPage == vm.pagedUserItems().length - 1}">
+<a href ng-click="vm.nextUserPage(vm.pagedUserItems())">Next Â»</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

@@ -1,0 +1,93 @@
+﻿<section class="mainbar" data-ng-controller="user_replies as vm">
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="form-search">
+<input class="input-xlarge search-query" data-ng-model="vm.replySearch" data-ng-keyup="vm.search($event)" placeholder="Filter team, topic, or body"/>
+<div class="btn-group pull-right">
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="widget worange">
+<div data-cc-widget-header title="My Comments" subtitle="{{ vm.filteredReplies.length }} / {{ vm.replies.length }}"></div>
+<div class="widget-content">
+<div class="padd">
+<ul class="recent">
+<li class="repeat-item" data-ng-repeat="comment in vm.pagedItems[vm.currentPage]">
+<div class="avatar pull-left">
+<img class="img-thumbnail img-responsive" data-ng-src="{{comment.team}}" width="70" alt=""/>
+</div>
+<div class="recent-content">
+<div class="recent-meta pull-right">Posted on {{ comment.created | date:"medium" }}</div>
+<h4>{{ comment.topic | words:12:ignoreSpaces }}</h4>
+</div>
+<div class="col-md-9">{{ comment.body }}
+</div>
+<div class="btn-group pull-right">
+<button class="btn btn-sm btn-primary" data-ng-click="vm.open(comment)"><i class="icon-pencil"></i></button>
+<button class="btn btn-sm btn-danger" data-ng-click="vm.deleteReply(comment,$index)"><i class="icon-remove"></i></button>
+</div>
+<div class="clearfix"></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next »</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div data-ng-show="vm.updatable" class="dissolve-animation col-md-4">
+<div class="widget worange">
+<div data-cc-widget-header title="Update Post" allow-collapse="false"></div>
+<div class="widget-content">
+<div class="padd">
+<div class="form quick-post">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="control-label col-lg-3" for="title">Topic</label>
+<div class="col-lg-9">
+<input data-ng-model="vm.reply.topic" type="text" class="form-control" id="title" readonly>
+</div>
+</div>
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Body</label>
+<div class="col-lg-9">
+<textarea data-ng-model="vm.reply.body" class="form-control" id="content"></textarea>
+</div>
+</div>
+<div class="form-group">
+<div class="col-lg-9 col-lg-offset-3">
+<button data-ng-click="vm.editReply(vm.reply)" type="submit" class="btn btn-info">Publish
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+﻿

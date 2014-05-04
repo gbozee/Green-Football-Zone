@@ -1,0 +1,85 @@
+#extends 'base.html'
+#import 'macro/utils.html' as utils
+
+#block content
+<div class="page-header">
+    <h1>{{ title }}</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm dropdown-toggle btn-success" data-toggle="dropdown">
+                        Limit - {{ request.args.get('limit') or 'Default' }}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('all_team_list') }}">{{ config.DEFAULT_DB_LIMIT }} (Default)</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url_for('all_team_list', limit=2) }}">2</a></li>
+                        <li><a href="{{ url_for('all_team_lis', limit=4) }}">4</a></li>
+                        <li><a href="{{ url_for('all_team_list', limit=8) }}">8</a></li>
+                        <li><a href="{{ url_for('all_team_list', limit=16) }}">16</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm dropdown-toggle btn-danger" data-toggle="dropdown">
+                        Admins - {{ request.args.get('admin') or 'None' }}
+                        <span class="caret"></span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="col-xs-3">{{ utils.order_link('Name', 'all_teams_list', 'name') }}</th>
+                <th class="col-xs-2 hidden-xs">{{ utils.order_link('League', 'all_teams_list', 'league') }}</th>
+                <th class="col-xs-2">{{ utils.order_link('Created', 'all_teams_list', 'created') }}</th>
+                <th class="col-xs-2 hidden-xs">{{ utils.order_link('Modified', 'all_teams_list', 'modified') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            #for team in teams
+            <tr>
+                <td>
+                    <img src="{{ team.logo }}" width="18" alt="Logo for {{ team.name }}">
+                    {{ user_db.name }}
+                    #if team.administrator
+                    <i class="icon-cog" title="Administrator"></i>
+                    #endif
+                </td>
+                <td class="hidden-xs">{{ team.league }}</td>
+                <td>
+                    <time datetime="{{ team.created.isoformat() }}">
+                        {{ team.created.strftime('%Y-%m-%d') }}
+                    </time>
+                </td>
+                <td class="hidden-xs">
+                    <time datetime="{{ team.modified.isoformat() }}">
+                        {{ team.modified.strftime('%Y-%m-%d') }}
+                    </time>
+                </td>
+                <td class="hidden-xs">
+                    {#             <a href="{{ url_for('set_admin',name_id=user_db.key.id()) }}">Set as Admin</a>#}
+                    {#                   <a href="{{ url_for('welcome') }}"#}
+                    {#             </td>#}
+            </tr>
+            #endfor
+            </tbody>
+        </table>
+    </div>
+</div>
+#if more_url
+<ul class="pager">
+    <li><a href="{{ more_url }}">Next Page</a></li>
+</ul>
+#endif
+#endblock

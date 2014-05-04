@@ -1,0 +1,108 @@
+<section class="mainbar" data-ng-controller="topic as vm">
+<div class="page-head">
+<div class="user">
+<div class="row">
+<upvote count="{{ vm.voteCount }}" upvote="vm.upVote(vm.topic)" downvote="vm.downVote(vm.topic)"></upvote>
+<div class="col-md-1 col-xs-2 user-pic">
+<a data-ng-click="vm.navigateToTopics(a.name)"><img data-ng-src="{{vm.topic.team_url}}" alt="" /></a>
+</div>
+<div class="col-md-7 col-xs-9 team-details">
+<h5 class="pull-left">{{ vm.topic.title }}
+<span class="page-meta">
+<span>{{ vm.topic.body }}</span>
+</span>
+</h5>
+</div>
+<div class="col-md-3 bread-crumb">
+<ul class="bread-crumb pull-right" style="list-style-type:none">
+<li><strong>Author:</strong> {{ vm.topic.author }}</li>
+<li><strong>Created:</strong> {{ vm.topic.created | date: 'short' }}</li>
+<li><strong>Team 1:</strong><span> {{ vm.topic.team }}</span></li>
+<li><strong>Team 2:</strong><span> {{ vm.topic.second_team }}</span></li>
+<li><strong>Administrator:</strong><span> {{ vm.team.admin }}</span>
+</ul>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<section class="matter">
+<div class="container">
+<div class="form-search">
+<div class="btn-group pull-right">
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="widget wred">
+<div data-cc-widget-header title="Replies" allow-collapse="true"></div>
+<div class="widget-content">
+<div class="padd">
+<ul class="recent repeat-item" data-ng-repeat="r in vm.pagedItems[vm.currentPage]">
+<li>
+<div class="avatar pull-left">
+<img class="img-thumbnail img-responsive" data-ng-src="{{r.user_url}}" width="50px" alt="">
+</div>
+<div class="recent-content">
+<div class="recent-meta pull-right">Posted on {{ r.created | date:"short" }}</div>
+<h6> by {{ r.by }}</h6>
+<div class="col-md-9"><p>{{ r.body }}</p></div>
+<div data-ng-show="vm.signedIn()">
+<google-plus-share clientid="{{vm.clientId}}" prefilltext="{{r.body}}" contenturl="http://{{vm.topic.topic_url}}" text="Share">
+</google-plus-share>
+</div>
+<div class="clearfix"></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="widget worange">
+<div data-cc-widget-header title="Create Comment" allow-collapse="false"></div>
+<div class="widget-content">
+<div class="padd">
+<div class="form quick-post">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label class="control-label col-lg-3" for="content">Body</label>
+<div class="col-lg-9">
+<textarea data-ng-model="vm.newReply.body" class="form-control" id="content" style="height: 150px;"></textarea>
+</div>
+</div>
+<div class="form-group">
+<div class="col-lg-9 col-lg-offset-3">
+<button data-ng-click="vm.addReply($event)" type="submit" class="btn btn-info">Add
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="widget-foot">
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>

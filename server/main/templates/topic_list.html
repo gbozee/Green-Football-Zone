@@ -1,0 +1,36 @@
+#extends 'base.html'
+
+#block content
+<div class="page-header">
+    <h1>{{ title }}</h1>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="span1">ID</th>
+                <th class="span2">Title</th>
+                <th class="span2">Body</th>
+                <th class="span1">Votes</th>
+                <th class="span1">Update topic</th>
+            </tr>
+            </thead>
+            <tbody>
+            #for topic in team.topics
+            <tr>
+                <td>{{ topic.id() }}</td>
+                <td>{{ topic.get().title }} </td>
+                <td>{{ topic.get().body }} </td>
+                <td>{{ topic.get().vote }}</td>
+                <td><a href="{{ url_for('replies',topic_id=topic.urlsafe()) }}">View Replies</a></td>
+                <td><a href="{{ url_for('create_reply',topic_id=topic.urlsafe()) }}">Create Replies</a></td>
+                <td><a href="{{ url_for('update_topic', topic_id=topic.urlsafe()) }}">Update Topic</a></td>
+            </tr>
+            #endfor
+            </tbody>
+        </table>
+    </div>
+</div>
+#endblock

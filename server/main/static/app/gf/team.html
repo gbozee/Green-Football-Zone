@@ -1,0 +1,76 @@
+<section class="mainbar" data-ng-controller="teams as vm">
+<div class="page-head">
+<div class="avatar pull-left"><a><img data-ng-src="{{vm.league.logo}}" width="60"></a></div>
+<h2 class="pull-left">{{ vm.league.name }}
+<span class="page-meta">{{ vm.subtitle }}</span>
+</h2>
+<div class="bread-crumb pull-right">
+<div class="bread-crumb pull-right">
+<a href="#/leagues"><i class="icon-home"></i>League</a>
+<span class="divider">/</span>
+<a data-ng-click="vm.page_url" class="bread-current">{{vm.league.name}}</a>
+</div>-->
+</div>
+<div class="clearfix"></div>
+</div>
+<section class="matter">
+<div class="container">
+<div class="row">
+<div class="form-search">
+<input class="input-sm search-query" data-ng-model="vm.teamsSearch" data-ng-keyup="vm.search($event)" placeholder="Filter team by name, league or type"/>
+<div class="btn-group pull-right">
+<a class="btn btn-info" data-ng-click="vm.refresh()"><i class="icon-refresh"></i><span>Refresh</span></a>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="widget wblue">
+<div data-cc-widget-header title="{{ vm.title }}" subtitle="{{ vm.filteredTeams.length }}/{{ vm.teams.length }}"></div>
+<div class="widget-content">
+<div class="padd repeat-item" data-ng-repeat="a in vm.pagedItems[vm.currentPage]">
+<div class="user">
+<div class="user-pic">
+<img class="img-thumbnail img-responsive" data-ng-src="{{a.logo}}" alt="" />
+</div>
+<div class="user-details">
+<a href="#/teams/{{a.name}}" tooltip-placement="bottom" tooltip="View Team (Topics will be available if team is followed)">
+<h4 class="hidden-xs">{{ a.name }}</h4><h4 class="col-md-12 pull-left visible-xs">{{ a.name }}</h4>
+</a>
+<div class="pull-right">
+<div class="gf-follow-button">
+<span data-ng-show="vm.following(a.name)" class="my-elm label label-info">Following</span>
+<button class="btn btn-info btn-lg my-elm" style="width:160px" data-ng-hide="vm.following(a.name)" rel=6 ng-click="vm.followTeam(a)">Follow</button>
+</div>
+</div>
+<p>{{a.info}}</p>
+<span data-ng-show="{{ a.type == 'country' }}" class="label label-success">Country</span>
+<span data-ng-show="{{ a.type == 'club' }}" class="label label-info">Club</span>
+</div>
+<div class="clearfix">
+<span>{{ a.followers_count }} followers</span>
+</div>
+</div>
+<hr />
+</div>
+</div>
+<div class="widget-foot">
+<div class="clearfix"></div>
+<ul class="pagination pull-right">
+<li ng-class="{disabled: vm.currentPage == 0}">
+<a href ng-click="vm.prevPage()">Â« Prev</a>
+</li>
+<li ng-repeat="n in vm.range(vm.pagedItems.length)" ng-class="{active: n == vm.currentPage}" ng-click="vm.setPage(n)">
+<a href ng-bind="n + 1">1</a>
+</li>
+<li ng-class="{disabled: vm.currentPage == vm.pagedItems.length - 1}">
+<a href ng-click="vm.nextPage()">Next Â»</a>
+</li>
+</ul>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
